@@ -11,9 +11,10 @@ public:
 	virtual void Init();
 	virtual void Update(float dt);
 	virtual void Draw(RenderWindow& window);
+	virtual void SetOrigin(Origins origin);
+	virtual void SetPos(Vector2f pos);
 		
 	void SetSize(int size);
-	void SetPosition(Vector2f size);
 	void SetString(String string);
 	void SetFont(Font& font);
 };

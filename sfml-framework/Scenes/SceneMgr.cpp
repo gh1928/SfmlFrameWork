@@ -1,13 +1,24 @@
 #include "SceneMgr.h"
 #include "SceneDev1.h"
 #include "SceneDev2.h"
+#include "PongTest.h"
+#include "SFML/Graphics.hpp"
+
+SceneMgr::~SceneMgr()
+{
+    //for (auto it : sceneMap)
+    //{
+    //    delete it.second;
+    //}
+}
 
 bool SceneMgr::Init()
 {
     sceneMap[Scenes::Dev1] = new SceneDev1();
     sceneMap[Scenes::Dev2] = new SceneDev2();
+    sceneMap[Scenes::PongTest] = new PongTest();
 
-    currScene = Scenes::Dev1;
+    currScene = Scenes::PongTest;
     sceneMap[currScene]->Enter();
 
     return true;

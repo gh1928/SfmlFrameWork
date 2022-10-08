@@ -2,15 +2,10 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 #include <map>
+#include "EnumClasses.h"
 
 using namespace sf;
 using namespace std;
-
-enum class Axis
-{
-	Horizontal,
-	Vertical,
-};
 
 struct AxisInfo
 {

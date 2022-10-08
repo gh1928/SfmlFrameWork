@@ -1,6 +1,5 @@
 #pragma once
 #include "Object.h"
-#include "../Framework/Utils.h"
 
 class SpriteObj :public Object
 {
@@ -16,7 +15,7 @@ public:
 	virtual void Draw(RenderWindow& window) override;
 
 	void SetTexture(Texture& tex);
-	void SetOrigin(Origins origin);
+	virtual void SetOrigin(Origins origin);
 	Vector2f GetSize()const;
 
 	virtual void SetPos(const Vector2f& pos) override;

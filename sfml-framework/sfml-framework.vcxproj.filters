@@ -22,6 +22,11 @@
     <ClCompile Include="GameObject\SpriteObj.cpp" />
     <ClCompile Include="GameObject\TextObj.cpp" />
     <ClCompile Include="Framework\SoundMgr.cpp" />
+    <ClCompile Include="GameObject\ShapeObj.cpp" />
+    <ClCompile Include="GameObject\Pong\Ball.cpp" />
+    <ClCompile Include="GameObject\Pong\Block.cpp" />
+    <ClCompile Include="GameObject\Pong\Bat.cpp" />
+    <ClCompile Include="Scenes\PongTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTable\DataTable.h" />
@@ -41,5 +46,12 @@
     <ClInclude Include="GameObject\SpriteObj.h" />
     <ClInclude Include="GameObject\TextObj.h" />
     <ClInclude Include="Framework\SoundMgr.h" />
+    <ClInclude Include="Framework\Constants.h" />
+    <ClInclude Include="Framework\EnumClasses.h" />
+    <ClInclude Include="GameObject\ShapeObj.h" />
+    <ClInclude Include="GameObject\Pong\Ball.h" />
+    <ClInclude Include="GameObject\Pong\Block.h" />
+    <ClInclude Include="GameObject\Pong\Bat.h" />
+    <ClInclude Include="Scenes\PongTest.h" />
   </ItemGroup>
 </Project>

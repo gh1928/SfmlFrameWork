@@ -14,6 +14,8 @@ private:
 	Scenes currScene;
 
 public:
+	~SceneMgr();
+
 	bool Init();
 	Scenes GetCurrScene() const;
 	Scene* GetScene(Scenes scene);

@@ -59,3 +59,7 @@ void Object::Translate(const Vector2f& delta)
 {
     SetPos(position + delta);
 }
+
+void Object::SetOrigin(Origins origin)
+{
+}

@@ -21,14 +21,20 @@ void TextObj::Draw(RenderWindow& window)
 	window.draw(tex);
 }
 
+void TextObj::SetOrigin(Origins origin)
+{
+	Utils::SetOrigin(tex, origin);
+}
+
 void TextObj::SetSize(int size)
 {
 	tex.setCharacterSize(size);
 }
 
-void TextObj::SetPosition(Vector2f size)
+void TextObj::SetPos(Vector2f pos)
 {
-	tex.setPosition(size);	
+	Object::SetPos(pos);
+	tex.setPosition(pos);
 }
 
 void TextObj::SetString(String string)

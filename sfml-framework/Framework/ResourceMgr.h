@@ -10,7 +10,6 @@
 using namespace std;
 using namespace sf;
 
-
 class ResourceMgr : public Singleton<ResourceMgr>
 {
 private:

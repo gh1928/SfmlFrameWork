@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <SFML/Graphics.hpp>
+#include "../Framework/Utils.h"
 
 using namespace std;
 using namespace sf;
@@ -33,6 +34,7 @@ public:
 	virtual void SetPos(const Vector2f& pos);
 	virtual const Vector2f& GetPos() const;
 	virtual void Translate(const Vector2f& delta);
+	virtual void SetOrigin(Origins origin);
 
 	virtual void Update(float dt);
 	virtual void Draw(RenderWindow& window);

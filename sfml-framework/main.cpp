@@ -4,7 +4,7 @@
 
 int main()
 {
-    Framework framework(WIN_WIDTH, WIN_WIDTH);
+    Framework framework(WIN_WIDTH, WIN_HEIGHT);
     framework.Init();
     framework.Do();
     return 0;

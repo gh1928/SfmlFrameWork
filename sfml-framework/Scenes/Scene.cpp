@@ -7,6 +7,14 @@ Scene::Scene(Scenes type)
 
 Scene::~Scene()
 {
+	//for (auto obj : objList)
+	//{
+	//	delete obj;
+	//}
+	//for (auto uiobj : uiObjList)
+	//{
+	//	delete uiobj;
+	//}
 }
 
 void Scene::Update(float dt)

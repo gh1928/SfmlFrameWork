@@ -146,6 +146,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameObject\Pong\Bat.cpp" />
+    <ClCompile Include="GameObject\Pong\Block.cpp" />
+    <ClCompile Include="GameObject\Pong\Ball.cpp" />
     <ClCompile Include="DataTable\DataTable.cpp" />
     <ClCompile Include="DataTable\DataTableMgr.cpp" />
     <ClCompile Include="DataTable\StringTable.cpp" />
@@ -156,16 +159,23 @@
     <ClCompile Include="Framework\Utils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GameObject\Object.cpp" />
+    <ClCompile Include="Scenes\PongTest.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Scenes\SceneDev1.cpp" />
     <ClCompile Include="Scenes\SceneDev2.cpp" />
     <ClCompile Include="Scenes\SceneMgr.cpp" />
     <ClCompile Include="GameObject\SpriteObj.cpp" />
     <ClCompile Include="Framework\SoundMgr.cpp" />
+    <ClCompile Include="GameObject\ShapeObj.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3rd\rapidcsv.h" />
     <ClInclude Include="3rd\Singleton.h" />
+    <ClInclude Include="GameObject\Pong\Bat.h" />
+    <ClInclude Include="GameObject\Pong\Block.h" />
+    <ClInclude Include="GameObject\Pong\Ball.h" />
+    <ClInclude Include="Framework\EnumClasses.h" />
+    <ClInclude Include="Framework\Constants.h" />
     <ClInclude Include="DataTable\DataTable.h" />
     <ClInclude Include="DataTable\DataTableMgr.h" />
     <ClInclude Include="DataTable\StringTable.h" />
@@ -175,12 +185,14 @@
     <ClInclude Include="Framework\ResourceMgr.h" />
     <ClInclude Include="Framework\Utils.h" />
     <ClInclude Include="GameObject\Object.h" />
+    <ClInclude Include="Scenes\PongTest.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\SceneDev1.h" />
     <ClInclude Include="Scenes\SceneDev2.h" />
     <ClInclude Include="Scenes\SceneMgr.h" />
     <ClInclude Include="GameObject\SpriteObj.h" />
     <ClInclude Include="Framework\SoundMgr.h" />
+    <ClInclude Include="GameObject\ShapeObj.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
