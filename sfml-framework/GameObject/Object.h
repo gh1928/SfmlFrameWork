@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
 
 using namespace std;
 using namespace sf;
@@ -16,10 +16,13 @@ protected:
 	float rotation;
 	Vector2f scale;
 
+	static int objCount;
 
 public:
 	Object();
 	virtual ~Object();
+
+	int GetObjId() const;
 
 	virtual void SetActive(bool active);
 	virtual bool GetActive() const;
@@ -27,11 +30,11 @@ public:
 	virtual void Init();
 	virtual void Release();
 
-	virtual void SetPosition(const Vector2f& pos);
-	virtual const Vector2f GetPosition() const;
+	virtual void SetPos(const Vector2f& pos);
+	virtual const Vector2f& GetPos() const;
+	virtual void Translate(const Vector2f& delta);
 
 	virtual void Update(float dt);
 	virtual void Draw(RenderWindow& window);
-	 
-};
 
+};

@@ -1,20 +1,25 @@
 #pragma once
 #include "Object.h"
-class SpriteObj : public Object
+#include "../Framework/Utils.h"
+
+class SpriteObj :public Object
 {
 protected:
 	Sprite sprite;
-	
 
 public:
 	SpriteObj();
 	virtual ~SpriteObj();
 
-	virtual void Init();
-	virtual void Update(float dt);
-	virtual void Draw(RenderWindow& window);
+	virtual void Init() override;
+	virtual void Update(float dt) override;
+	virtual void Draw(RenderWindow& window) override;
 
-	
 	void SetTexture(Texture& tex);
+	void SetOrigin(Origins origin);
+	Vector2f GetSize()const;
+
+	virtual void SetPos(const Vector2f& pos) override;
+
 };
 

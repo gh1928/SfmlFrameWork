@@ -8,16 +8,7 @@
 SceneDev2::SceneDev2()
 	:Scene(Scenes::Dev2)
 {
-	SpriteObj* obj = new SpriteObj();
-	obj->SetTexture(*RESOURCE_MGR->GetTexture("graphics/player5.png"));
-	objList.push_back(obj);
 
-	TextObj* texobj = new TextObj();
-	texobj->SetFont(*RESOURCE_MGR->GetFont("fonts/DS-DIGI.ttf"));
-	texobj->SetPosition({ 1080, 200 });
-	texobj->SetSize(75);
-	texobj->SetString("Dev2");
-	uiObjList.push_back(texobj);
 }
 
 SceneDev2::~SceneDev2()
