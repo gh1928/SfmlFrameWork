@@ -1,22 +1,12 @@
 #pragma once
 #include <random>
 #include <SFML/Graphics.hpp>
+#include "EnumClasses.h"
 
 using namespace sf;
 using namespace std;
 
-enum class Origins
-{
-	TL,	// 0
-	TC,
-	TR,
-	ML,
-	MC,
-	MR,
-	BL,
-	BC,
-	BR,	// 8
-};
+
 
 class Utils
 {

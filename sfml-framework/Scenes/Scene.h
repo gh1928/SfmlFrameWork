@@ -3,15 +3,10 @@
 #include <map>
 #include <list>
 #include "../GameObject/Object.h"
+#include "../Framework/EnumClasses.h"
 
 using namespace std;
 using namespace sf;
-
-enum class Scenes
-{
-	Dev1,
-	Dev2,
-};
 
 class Scene
 {

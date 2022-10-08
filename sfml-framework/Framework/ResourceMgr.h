@@ -3,18 +3,13 @@
 #include <SFML/Audio.hpp>
 #include <map>
 
+#include "EnumClasses.h"
 #include "../3rd/Singleton.h"
 #include "../3rd/rapidcsv.h"
 
 using namespace std;
 using namespace sf;
 
-enum class ResourceTypes
-{
-	Texture,
-	Font,
-	SoundBuffer,
-};
 
 class ResourceMgr : public Singleton<ResourceMgr>
 {
