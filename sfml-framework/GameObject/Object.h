@@ -1,7 +1,10 @@
 #pragma once
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "../Framework/Utils.h"
+#include "../Framework/SoundMgr.h"
+#include "../Framework/ResourceMgr.h"
 
 using namespace std;
 using namespace sf;

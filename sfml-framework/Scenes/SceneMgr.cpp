@@ -1,7 +1,7 @@
 #include "SceneMgr.h"
 #include "SceneDev1.h"
 #include "SceneDev2.h"
-#include "PongTest.h"
+#include "PongGame.h"
 #include "SFML/Graphics.hpp"
 
 SceneMgr::~SceneMgr()
@@ -16,9 +16,9 @@ bool SceneMgr::Init()
 {
     sceneMap[Scenes::Dev1] = new SceneDev1();
     sceneMap[Scenes::Dev2] = new SceneDev2();
-    sceneMap[Scenes::PongTest] = new PongTest();
+    sceneMap[Scenes::PongGame] = new PongGame();
 
-    currScene = Scenes::PongTest;
+    currScene = Scenes::PongGame;
     sceneMap[currScene]->Enter();
 
     return true;

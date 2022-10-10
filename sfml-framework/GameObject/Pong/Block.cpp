@@ -29,6 +29,7 @@ Block::~Block()
 
 void Block::Init()
 {
+	hp = 1;
 	enabled = true;
 }
 

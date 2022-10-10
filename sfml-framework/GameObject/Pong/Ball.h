@@ -16,6 +16,7 @@ private:
 	float speed;
 	Vector2f currDir;
 	Bat* bat;
+	bool ballDown;
 
 	int blockHeadId;
 	vector<bool> isCollision; //마지막 3자리는 사이드 탑 배트
@@ -34,9 +35,11 @@ public:
 	void SetAlive(bool alive);		
 	void SetCollisionPos();
 
+	
 	void CollsionBugFix();
 	void BlockCollision(int num);	
-	void BatCollsion();
+	void BatCollsion();	
+	bool GetballDown();
 
 	void ShowCollisionForDev(RenderWindow& window);
 

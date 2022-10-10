@@ -6,7 +6,7 @@ Ball::Ball(Bat* bat, vector<pair<Block*, Vector2f>>& blocksInfo)
 	enabled = true;
 	shape = ball;
 	ball->setRadius(10);	
-	Utils::SetOrigin(*ball, Origins::MC);	
+	Utils::SetOrigin(*ball, Origins::MC);		
 
 	isCollision.assign(1024, true); //앞자리 index = objid , 뒤 임의 index
 
@@ -107,7 +107,11 @@ void Ball::CollsionBugFix()
 	if (rect.top >= WIN_HEIGHT)
 	{
 		alive = false;
+		ballDown = true;
 	}
+	else
+		ballDown = false;
+	
 
 	if (rect.intersects(bat->GetGlobalBounds()))
 	{
@@ -117,6 +121,11 @@ void Ball::CollsionBugFix()
 	}
 	else
 		isCollision[1021] = true;
+}
+
+bool Ball::GetballDown()
+{
+	return ballDown;
 }
 
 void Ball::BlockCollision(int num)
@@ -149,6 +158,7 @@ void Ball::BlockCollision(int num)
 	// ( 1,  1 ), ( -1,  1 )
     // ( 1, -1 ), ( -1, -1 )	
 
+	SOUND_MGR->Play("sound/bound.wav");
 	blocksInfo[num].first->SetHp(-1);
 }
 
