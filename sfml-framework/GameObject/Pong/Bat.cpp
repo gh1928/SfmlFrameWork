@@ -33,12 +33,14 @@ void Bat::Init()
 
 void Bat::Update(float dt)
 {
+	float batHalfWidth = (bat->getSize().x)/2.f;
+
 	if (InputMgr::GetAxisRaw(Axis::Horizontal) == -1.f
-		&& bat->getPosition().x <= 50)
+		&& bat->getPosition().x <= batHalfWidth)
 		return;
 
 	if (InputMgr::GetAxisRaw(Axis::Horizontal) == 1.f
-		&& bat->getPosition().x >= (WIN_WIDTH - 50))
+		&& bat->getPosition().x >= (WIN_WIDTH - batHalfWidth))
 		return;
 
 	currDir.x = InputMgr::GetAxisRaw(Axis::Horizontal);

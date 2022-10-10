@@ -93,11 +93,9 @@ void PongTest::Update(float dt)
 	if (isPause)
 		return;
 
-	ScoreCount();
-	string hudText = "score: " + to_string(score) + "\tLife: " + to_string(life);
-	hud->SetString(hudText);
-
 	Scene::Update(dt);
+
+	ScoreCount();
 
 	if (life <= 0)
 	{
@@ -112,6 +110,9 @@ void PongTest::Update(float dt)
 		textMessage->SetOrigin(Origins::MC);
 		isPause = true;
 	}
+
+	string hudText = "score: " + to_string(score) + "\tLife: " + to_string(life);
+	hud->SetString(hudText);
 }
 
 void PongTest::Draw(RenderWindow& window)

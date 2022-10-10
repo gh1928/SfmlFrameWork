@@ -31,8 +31,7 @@ public:
 	float GetSpeed();	
 	void SetSpeed(float speed);		
 	bool GetAlive();
-	void SetAlive(bool alive);	
-	bool Collisiondetection();
+	void SetAlive(bool alive);		
 	void SetCollisionPos();
 
 	void CollsionBugFix();

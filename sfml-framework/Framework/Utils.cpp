@@ -47,6 +47,19 @@ float Utils::Magnitude(const Vector2f& vec)
 	return sqrt(vec.x * vec.x + vec.y * vec.y);
 }
 
+Vector2f Utils::VectorRotation(Vector2f original, float degree)
+{
+	Vector2f result;
+	float radian = degree * PI / 180;
+	float sine = sin(radian);
+	float cosine = cos(radian);
+
+	result.x = (original.x * cosine) - (original.y * sine);
+	result.y = (original.x * sine) + (original.y * cosine);
+
+	return result;
+}
+
 Vector2f Utils::Normalize(const Vector2f& vec)
 {
 	float mag = Magnitude(vec);

@@ -8,7 +8,7 @@ Ball::Ball(Bat* bat, vector<pair<Block*, Vector2f>>& blocksInfo)
 	ball->setRadius(10);	
 	Utils::SetOrigin(*ball, Origins::MC);	
 
-	isCollision.assign(1024, true);
+	isCollision.assign(1024, true); //앞자리 index = objid , 뒤 임의 index
 
 	FloatRect rect = ball->getGlobalBounds();
 	RectangleShape collisionBox;
@@ -20,7 +20,7 @@ Ball::Ball(Bat* bat, vector<pair<Block*, Vector2f>>& blocksInfo)
 		collision[i].first.setFillColor(Color::Yellow);
 	}
 
-	blockHeadId = blocksInfo.front().first->GetObjId();	
+	blockHeadId = blocksInfo.front().first->GetObjId();
 
 	Init();	
 }
@@ -53,11 +53,6 @@ bool Ball::GetAlive()
 void Ball::SetAlive(bool alive)
 {
 	this->alive = alive;
-}
-
-bool Ball::Collisiondetection()
-{
-	return false;
 }
 
 void Ball::SetCollisionPos()
@@ -113,6 +108,15 @@ void Ball::CollsionBugFix()
 	{
 		alive = false;
 	}
+
+	if (rect.intersects(bat->GetGlobalBounds()))
+	{
+		if (isCollision[1021])
+			BatCollsion();
+		isCollision[1021] = false;
+	}
+	else
+		isCollision[1021] = true;
 }
 
 void Ball::BlockCollision(int num)
@@ -140,7 +144,7 @@ void Ball::BlockCollision(int num)
 	{
 		vector.y /= abs(vector.y);
 		currDir.y = abs(currDir.y) * vector.y;
-	}		
+	}
 
 	// ( 1,  1 ), ( -1,  1 )
     // ( 1, -1 ), ( -1, -1 )	
@@ -150,8 +154,18 @@ void Ball::BlockCollision(int num)
 
 void Ball::BatCollsion()
 {
+	FloatRect rect = bat->GetGlobalBounds();
+	
+	float degree = 90.f;
+	if ((GetPos().x < rect.left))
+		degree = 135.f;
+	if ((GetPos().x > rect.left + rect.width))
+		degree = 45.f;
 
-
+	degree = 135.f - ((GetPos().x - rect.left) / rect.width) * 90.f;
+	
+	currDir.x = cos(degree * PI / 180);
+	currDir.y = - sin(degree * PI / 180);
 }
 
 void Ball::ShowCollisionForDev(RenderWindow& window)

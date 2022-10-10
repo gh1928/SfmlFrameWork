@@ -2,6 +2,7 @@
 #include <random>
 #include <SFML/Graphics.hpp>
 #include "EnumClasses.h"
+#include "Constants.h"
 
 using namespace sf;
 using namespace std;
@@ -28,6 +29,7 @@ public:
 	static float SqrMagnitude(const Vector2f& vec);
 	static float Magnitude(const Vector2f& vec);
 
+	static Vector2f VectorRotation(Vector2f original, float degree);
 	static Vector2f Normalize(const Vector2f& vec);
 
 };
