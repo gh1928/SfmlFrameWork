@@ -9,12 +9,13 @@
 class PongTest : public Scene
 {
 private:	
-	vector<pair<Block*, Vector2f>> blockInfos;
+	vector<pair<Block*, Vector2f>> blocksInfo;
 	Ball* ball;
 	Bat* bat;
 	int score;
 	int life;
 	bool isPause;
+	bool devMode;
 	TextObj* hud;
 	TextObj* textMessage;
 public:

@@ -29,14 +29,9 @@ enum class Origins
 enum class Collision
 {
 	TL,	// 0
-	TC,
 	TR,
-	ML,
-	MC,
-	MR,
 	BL,
-	BC,
-	BR,	// 8
+	BR,	// 3
 };
 
 enum class Scenes

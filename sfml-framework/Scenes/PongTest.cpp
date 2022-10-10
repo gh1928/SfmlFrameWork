@@ -4,25 +4,25 @@
 
 PongTest::PongTest()
 	: Scene(Scenes::PongTest),
-	score(0), life(3), isPause(false)
+	score(0), life(3), isPause(false), devMode(false)
 {
-	ball = new Ball;
-	bat = new Bat;
-
-	objList.push_back(ball);
-	objList.push_back(bat);
-
-	Block dummy;
+	Block dummy(1);
 	FloatRect rect = dummy.GetGlobalBounds();
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)
 		{
-			blockInfos.push_back({ new Block, {10 + (20 + rect.width) * j, 10 + (20 + rect.height) * i} });
-			blockInfos.back().first->SetPos(blockInfos.back().second);
-			objList.push_back(blockInfos.back().first);
+			blocksInfo.push_back({ new Block(1), {10 + (20 + rect.width) * j, 10 + (20 + rect.height) * i}});
+			blocksInfo.back().first->SetPos(blocksInfo.back().second);
+			objList.push_back(blocksInfo.back().first);
 		}
 	}
+
+	bat = new Bat;
+	ball = new Ball(bat, blocksInfo);
+
+	objList.push_back(bat);
+	objList.push_back(ball);
 
 	hud = new TextObj;
 	hud->SetFont(*RESOURCE_MGR->GetFont("fonts/DS-DIGI.ttf"));
@@ -37,7 +37,7 @@ PongTest::PongTest()
 	textMessage->SetPos({ WIN_WIDTH * 0.5f, WIN_HEIGHT * 0.4f });
 	textMessage->SetString("GAME PASUED");
 	textMessage->SetOrigin(Origins::MC);
-	textMessage->SetActive(true);
+	textMessage->SetActive(false);
 	uiObjList.push_back(textMessage);
 }
 
@@ -67,32 +67,38 @@ void PongTest::Init()
 
 void PongTest::Update(float dt)
 {
+	if (InputMgr::GetKeyDown(Keyboard::Escape))
+	{
+		exit(1);
+	}	
+
+	if (InputMgr::GetKeyDown(Keyboard::Add))
+	{
+		devMode = !devMode;
+	}
+
 	if (InputMgr::GetKeyDown(Keyboard::Return))
 	{
 		if (life <= 0 || score >= 25)
 		{
 			Init();
-			textMessage->SetString("GAME PASUED");			
+			textMessage->SetString("GAME PASUED");	
 			textMessage->SetOrigin(Origins::MC);
 		}
 		isPause = !isPause;
 	}
+
+	textMessage->SetActive(isPause == true ? true : false);
+
 	if (isPause)
 		return;
+
 	ScoreCount();
 	string hudText = "score: " + to_string(score) + "\tLife: " + to_string(life);
 	hud->SetString(hudText);
-	ball->Update(dt);
-	bat->Update(dt);
-	for (int i = 0; i < blockInfos.size(); i++)
-	{
-		if(blockInfos[i].first->GetActive())
-			blockInfos[i].first->Update(dt);		
-	}
-	//if (ball.OnCollisionBottom())
-	//{
-	//	life -= 1;
-	//}
+
+	Scene::Update(dt);
+
 	if (life <= 0)
 	{
 		textMessage->SetString("GAME OVER");
@@ -110,23 +116,17 @@ void PongTest::Update(float dt)
 
 void PongTest::Draw(RenderWindow& window)
 {
-	for (int i = 0; i < 25; i++)
-	{
-		blockInfos[i].first->Draw(window);
-	}
-	ball->Draw(window);
-	bat->Draw(window);
-	hud->Draw(window);
-	if (isPause)
-		textMessage->Draw(window);
+	Scene::Draw(window);
+	if(devMode)
+		ball->ShowCollisionForDev(window);	
 }
 
 void PongTest::ScoreCount()
 {
 	score = 0;
-	for (int i = 0; i < blockInfos.size(); i++)
+	for (int i = 0; i < blocksInfo.size(); i++)
 	{
-		if (!blockInfos[i].first->GetActive())
+		if (!blocksInfo[i].first->GetActive())
 			score += 1;			
 	}
 }

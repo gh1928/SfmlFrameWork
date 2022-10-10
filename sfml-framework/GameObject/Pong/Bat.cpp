@@ -3,8 +3,11 @@
 
 Bat::Bat()
 	:bat(new RectangleShape), speed(1000.f)
-{
+{	
 	shape = bat;
+	bat->setSize({ 100, 10 });
+	FloatRect rect = ShapeObj::GetGlobalBounds();
+	bat->setOrigin(rect.width * 0.5f, -10.f);
 	Init();
 }
 
@@ -24,10 +27,8 @@ void Bat::SetSpeed(float speed)
 
 void Bat::Init()
 {
-	bat->setSize({ 100, 10 });
-	FloatRect rect = ShapeObj::GetGlobalBounds();
-	SetPos({ WIN_WIDTH * 0.5f, WIN_HEIGHT - 35.f });
-	bat->setOrigin(rect.width * 0.5f, -10.f);
+	enabled = true;
+	SetPos({ WIN_WIDTH * 0.5f, WIN_HEIGHT - 35.f });	
 }
 
 void Bat::Update(float dt)
