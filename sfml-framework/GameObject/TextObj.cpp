@@ -46,3 +46,8 @@ void TextObj::SetFont(Font& font)
 {
 	tex.setFont(font);
 }
+
+void TextObj::SetColor(Color color)
+{
+	tex.setFillColor(color);
+}

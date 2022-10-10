@@ -7,6 +7,7 @@ class Block : public ShapeObj
 {
 protected:
 	RectangleShape* block;
+	int maxHp;
 	int hp;
 public:
 	Block(int hp);

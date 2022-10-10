@@ -17,5 +17,6 @@ public:
 	void SetSize(int size);
 	void SetString(String string);
 	void SetFont(Font& font);
+	void SetColor(Color color);
 };
 

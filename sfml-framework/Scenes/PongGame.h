@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Scene.h"
+#include "../GameObject/SpriteObj.h"
 #include "../GameObject/TextObj.h"
 #include "../GameObject/Pong/Ball.h"
 #include "../GameObject/Pong/Bat.h"
@@ -18,16 +19,20 @@ private:
 	bool devMode;
 	TextObj* hud;
 	TextObj* textMessage;
+	RectangleShape fireLine;
+
+	SpriteObj* help;
+
 public:
 	PongGame();
 	~PongGame();
 
 	virtual void Enter() override;
 	virtual void Exit() override;
-
-	void ScoreCount();
-	void Init();
 	
+	void Init();
+	bool Win();
+
 	virtual void Update(float dt);	
 	virtual void Draw(RenderWindow& window);
 };

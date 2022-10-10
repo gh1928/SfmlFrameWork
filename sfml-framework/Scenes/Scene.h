@@ -4,6 +4,8 @@
 #include <list>
 #include "../GameObject/Object.h"
 #include "../Framework/EnumClasses.h"
+#include "../Framework/Constants.h"
+#include "../Framework/InputMgr.h"
 
 using namespace std;
 using namespace sf;

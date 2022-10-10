@@ -6,7 +6,7 @@ Bat::Bat()
 {	
 	shape = bat;
 	bat->setSize({ 100, 10 });
-	FloatRect rect = ShapeObj::GetGlobalBounds();
+	FloatRect rect = GetGlobalBounds();
 	bat->setOrigin(rect.width * 0.5f, -10.f);
 	Init();
 }
@@ -28,7 +28,7 @@ void Bat::SetSpeed(float speed)
 void Bat::Init()
 {
 	enabled = true;
-	SetPos({ WIN_WIDTH * 0.5f, WIN_HEIGHT - 35.f });	
+	SetPos({ GAME_WIDTH * 0.5f, GAME_HEIGHT - 35.f });
 }
 
 void Bat::Update(float dt)
@@ -40,7 +40,7 @@ void Bat::Update(float dt)
 		return;
 
 	if (InputMgr::GetAxisRaw(Axis::Horizontal) == 1.f
-		&& bat->getPosition().x >= (WIN_WIDTH - batHalfWidth))
+		&& bat->getPosition().x >= (GAME_WIDTH - batHalfWidth))
 		return;
 
 	currDir.x = InputMgr::GetAxisRaw(Axis::Horizontal);

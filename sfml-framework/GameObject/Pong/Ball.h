@@ -3,6 +3,7 @@
 #include "../../Framework/Constants.h"
 #include "../../Framework/InputMgr.h"
 #include "../../Framework/EnumClasses.h"
+#include "../../GameObject/TextObj.h"
 #include "Block.h"
 #include "Bat.h"
 
@@ -17,6 +18,10 @@ private:
 	Vector2f currDir;
 	Bat* bat;
 	bool ballDown;
+	float fireDgree;	
+	TextObj* fireLine;
+
+	int& score;
 
 	int blockHeadId;
 	vector<bool> isCollision; //마지막 3자리는 사이드 탑 배트
@@ -25,7 +30,7 @@ private:
 	vector<pair<Block*, Vector2f>>& blocksInfo;
 
 public:
-	Ball(Bat* bat, vector<pair<Block*, Vector2f>>& blocksInfo);
+	Ball(Bat* bat, vector<pair<Block*, Vector2f>>& blocksInfo, int& score);
 	~Ball();
 
 	void Fire(Vector2f dir, float speed);	
@@ -40,6 +45,7 @@ public:
 	void BlockCollision(int num);	
 	void BatCollsion();	
 	bool GetballDown();
+	float GetFireDegree();
 
 	void ShowCollisionForDev(RenderWindow& window);
 

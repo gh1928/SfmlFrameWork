@@ -27,6 +27,7 @@
     <ClCompile Include="GameObject\Pong\Block.cpp" />
     <ClCompile Include="GameObject\Pong\Bat.cpp" />
     <ClCompile Include="Scenes\PongGame.cpp" />
+    <ClCompile Include="Scenes\PongTitle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataTable\DataTable.h" />
@@ -53,5 +54,6 @@
     <ClInclude Include="GameObject\Pong\Block.h" />
     <ClInclude Include="GameObject\Pong\Bat.h" />
     <ClInclude Include="Scenes\PongGame.h" />
+    <ClInclude Include="Scenes\PongTitle.h" />
   </ItemGroup>
 </Project>

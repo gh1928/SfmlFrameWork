@@ -8,9 +8,7 @@ ShapeObj::~ShapeObj()
 {
     if (shape != nullptr)
         delete shape;
-    shape = nullptr;
-
-    std::cout << "ShapeObj ¼Ò¸êÀÚ È£Ãâ" << endl;
+    shape = nullptr;    
 }
 
 void ShapeObj::Init()

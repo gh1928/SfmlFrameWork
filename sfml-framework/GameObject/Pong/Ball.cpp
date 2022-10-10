@@ -1,12 +1,13 @@
 #include "Ball.h"
 
-Ball::Ball(Bat* bat, vector<pair<Block*, Vector2f>>& blocksInfo)
-	:ball(new CircleShape), speed(0), bat(bat), blocksInfo(blocksInfo)
+Ball::Ball(Bat* bat, vector<pair<Block*, Vector2f>>& blocksInfo, int& score)
+	:ball(new CircleShape), speed(0), bat(bat), blocksInfo(blocksInfo), score(score)
 {
 	enabled = true;
 	shape = ball;
 	ball->setRadius(10);	
 	Utils::SetOrigin(*ball, Origins::MC);		
+	fireDgree = 45.f;
 
 	isCollision.assign(1024, true); //앞자리 index = objid , 뒤 임의 index
 
@@ -86,7 +87,7 @@ void Ball::CollsionBugFix()
 			isCollision[blockHeadId + i] = true;
 	}		
 
-	if (rect.left <= 0 || WIN_WIDTH <= (rect.left + rect.width))
+	if (rect.left <= 0 || GAME_WIDTH <= (rect.left + rect.width))
 	{
 		if(isCollision[1023])
 			currDir.x *= -1;	
@@ -104,7 +105,7 @@ void Ball::CollsionBugFix()
 	else
 		isCollision[1022] = true;
 
-	if (rect.top >= WIN_HEIGHT)
+	if (rect.top >= GAME_HEIGHT)
 	{
 		alive = false;
 		ballDown = true;
@@ -126,6 +127,11 @@ void Ball::CollsionBugFix()
 bool Ball::GetballDown()
 {
 	return ballDown;
+}
+
+float Ball::GetFireDegree()
+{
+	return fireDgree;
 }
 
 void Ball::BlockCollision(int num)
@@ -160,6 +166,7 @@ void Ball::BlockCollision(int num)
 
 	SOUND_MGR->Play("sound/bound.wav");
 	blocksInfo[num].first->SetHp(-1);
+	score++;
 }
 
 void Ball::BatCollsion()
@@ -198,10 +205,22 @@ void Ball::Update(float dt)
 	Vector2f pos;
 	pos = alive ? (position += currDir * speed * dt) : bat->GetPos();
 	SetPos(pos);
+			
+	fireDgree += -InputMgr::GetAxisRaw(Axis::Vertical) * 50 * dt;
+	if (fireDgree < 45.f)
+		fireDgree = 45.f;
+	if (fireDgree > 135.f)
+		fireDgree = 135.f;
+
+	Vector2f degree;
+	degree.x = cos(fireDgree * PI / 180);
+	degree.y = -sin(fireDgree * PI / 180);
+
+	cout << fireDgree << endl;
 
 	if (!alive && InputMgr::GetKeyDown(Keyboard::Space))
 	{
-		Fire(Utils::Normalize(Vector2f(1, -1)), 750);
+		Fire(degree, 750);
 		alive = true;
 	}
 }

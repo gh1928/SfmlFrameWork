@@ -1,10 +1,10 @@
 #include "Block.h"
 
 Block::Block(int hp)
-	:block(new RectangleShape), hp(hp)
+	:block(new RectangleShape), hp(hp), maxHp(hp)
 {	
 	shape = block;	
-	block->setSize({ WIN_WIDTH / 5.f - 20, WIN_HEIGHT / 10.f - 20 });
+	block->setSize({ GAME_WIDTH / 5.f - 20, GAME_HEIGHT / 10.f - 20 });
 	block->setPosition(position);
 	switch (hp)
 	{
@@ -17,10 +17,8 @@ Block::Block(int hp)
 	case 3:
 		block->setFillColor(Color::Magenta);
 		break;
-	}
-	
-	enabled = true;
-	Init();
+	}	
+	enabled = true;	
 }
 
 Block::~Block()
@@ -29,7 +27,7 @@ Block::~Block()
 
 void Block::Init()
 {
-	hp = 1;
+	hp = maxHp;
 	enabled = true;
 }
 
@@ -42,6 +40,18 @@ void Block::Update(float dt)
 void Block::SetHp(int hp)
 {
 	this->hp += hp;
+	switch (this->hp)
+	{
+	case 1:
+		block->setFillColor(Color::Green);
+		break;
+	case 2:
+		block->setFillColor(Color::Blue);
+		break;
+	case 3:
+		block->setFillColor(Color::Magenta);
+		break;
+	}
 }
 
 int Block::GetHp()

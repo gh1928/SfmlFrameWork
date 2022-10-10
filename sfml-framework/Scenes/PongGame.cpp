@@ -12,33 +12,40 @@ PongGame::PongGame()
 	{
 		for (int j = 0; j < 5; j++)
 		{
-			blocksInfo.push_back({ new Block(1), {10 + (20 + rect.width) * j, 10 + (20 + rect.height) * i}});
+			blocksInfo.push_back({ new Block(3), {10 + (20 + rect.width) * j, 10 + (20 + rect.height) * i}});
 			blocksInfo.back().first->SetPos(blocksInfo.back().second);
 			objList.push_back(blocksInfo.back().first);
 		}
 	}
 
 	bat = new Bat;
-	ball = new Ball(bat, blocksInfo);
+	ball = new Ball(bat, blocksInfo, score);
 
 	objList.push_back(bat);
 	objList.push_back(ball);
 
 	hud = new TextObj;
 	hud->SetFont(*RESOURCE_MGR->GetFont("fonts/DS-DIGI.ttf"));
-	hud->SetSize(75);
-	hud->SetPos({ 20, 20 });
-	hud->SetActive(true);
+	hud->SetSize(50);
+	hud->SetPos({ GAME_WIDTH + 13, 15 });	
 	uiObjList.push_back(hud);
 	 
 	textMessage = new TextObj;
 	textMessage->SetFont(*RESOURCE_MGR->GetFont("fonts/DS-DIGI.ttf"));
 	textMessage->SetSize(75);
-	textMessage->SetPos({ WIN_WIDTH * 0.5f, WIN_HEIGHT * 0.4f });
+	textMessage->SetPos({ GAME_WIDTH * 0.5f, GAME_HEIGHT * 0.4f });
 	textMessage->SetString("GAME PASUED");
 	textMessage->SetOrigin(Origins::MC);
 	textMessage->SetActive(false);
 	uiObjList.push_back(textMessage);
+
+	help = new SpriteObj;
+	help->SetTexture(*RESOURCE_MGR->GetTexture("graphics/border.png"));
+	help->SetPos({ GAME_WIDTH , 0 });
+	uiObjList.push_back(help);
+
+	fireLine.setFillColor(Color::Red);
+	fireLine.setSize({ 50,1 });	
 }
 
 PongGame::~PongGame()
@@ -65,6 +72,16 @@ void PongGame::Init()
 	}
 }
 
+bool PongGame::Win()
+{
+	for (int i = 0; i < blocksInfo.size(); i++)
+	{
+		if (blocksInfo[i].first->GetActive())
+			return false;
+	}
+	return true;
+}
+
 void PongGame::Update(float dt)
 {
 	if (InputMgr::GetKeyDown(Keyboard::Escape))
@@ -79,8 +96,9 @@ void PongGame::Update(float dt)
 
 	if (InputMgr::GetKeyDown(Keyboard::Return))
 	{
-		if (life <= 0 || score >= 25)
-		{
+		if (life <= 0 || Win())
+		{			
+			ball->SetPos({ -10,-10 });
 			Init();
 			textMessage->SetString("GAME PASUED");	
 			textMessage->SetOrigin(Origins::MC);
@@ -94,8 +112,10 @@ void PongGame::Update(float dt)
 		return;
 
 	Scene::Update(dt);
+	
+	fireLine.setPosition(ball->GetPos());
+	fireLine.setRotation(-ball->GetFireDegree());
 
-	ScoreCount();
 	if (ball->GetballDown())
 		--life;
 
@@ -106,30 +126,22 @@ void PongGame::Update(float dt)
 		isPause = true;
 	}
 
-	if (score >= 25)
+	if (Win())
 	{
 		textMessage->SetString("YOU WIN");
 		textMessage->SetOrigin(Origins::MC);
 		isPause = true;
 	}
 
-	string hudText = "score: " + to_string(score) + "\tLife: " + to_string(life);
+	string hudText = "score: " + to_string(score) + "\nLife: " + to_string(life);
 	hud->SetString(hudText);
 }
 
 void PongGame::Draw(RenderWindow& window)
 {
-	Scene::Draw(window);
+	Scene::Draw(window);	
 	if(devMode)
 		ball->ShowCollisionForDev(window);	
-}
-
-void PongGame::ScoreCount()
-{
-	score = 0;
-	for (int i = 0; i < blocksInfo.size(); i++)
-	{
-		if (!blocksInfo[i].first->GetActive())
-			score += 1;			
-	}
+	if(!ball->GetAlive())
+		window.draw(fireLine);	
 }

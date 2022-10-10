@@ -19,13 +19,11 @@ public:
 	bool Init();
 	Scenes GetCurrScene() const;
 	Scene* GetScene(Scenes scene);
-
 	
 	void ChangeScene(Scenes scene);
 
 	void Update(float dt);
-	void Draw(RenderWindow& window);
-	
+	void Draw(RenderWindow& window);	
 };
 
 #define SCENE_MGR (SceneMgr::GetInstance())
