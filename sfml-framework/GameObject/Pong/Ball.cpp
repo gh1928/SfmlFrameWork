@@ -9,7 +9,7 @@ Ball::Ball(Bat* bat, vector<pair<Block*, Vector2f>>& blocksInfo, int& score)
 	Utils::SetOrigin(*ball, Origins::MC);		
 	fireDgree = 45.f;
 
-	isCollision.assign(1024, true); //앞자리 index = objid , 뒤 임의 index
+	isCollision.assign(1024, true); //앞자리 인덱스 = 블록 objid , 뒤 임의값
 
 	FloatRect rect = ball->getGlobalBounds();
 	RectangleShape collisionBox;
@@ -90,7 +90,7 @@ void Ball::CollsionBugFix()
 	if (rect.left <= 0 || GAME_WIDTH <= (rect.left + rect.width))
 	{
 		if(isCollision[1023])
-			currDir.x *= -1;	
+			currDir.x *= -1;
 		isCollision[1023] = false;
 	}
 	else
@@ -206,7 +206,7 @@ void Ball::Update(float dt)
 	pos = alive ? (position += currDir * speed * dt) : bat->GetPos();
 	SetPos(pos);
 			
-	fireDgree += -InputMgr::GetAxisRaw(Axis::Vertical) * 50 * dt;
+	fireDgree += -InputMgr::GetAxisRaw(Axis::Vertical) * 80 * dt;
 	if (fireDgree < 45.f)
 		fireDgree = 45.f;
 	if (fireDgree > 135.f)
@@ -214,9 +214,7 @@ void Ball::Update(float dt)
 
 	Vector2f degree;
 	degree.x = cos(fireDgree * PI / 180);
-	degree.y = -sin(fireDgree * PI / 180);
-
-	cout << fireDgree << endl;
+	degree.y = -sin(fireDgree * PI / 180);	
 
 	if (!alive && InputMgr::GetKeyDown(Keyboard::Space))
 	{

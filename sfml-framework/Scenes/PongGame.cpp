@@ -12,7 +12,7 @@ PongGame::PongGame()
 	{
 		for (int j = 0; j < 5; j++)
 		{
-			blocksInfo.push_back({ new Block(3), {10 + (20 + rect.width) * j, 10 + (20 + rect.height) * i}});
+			blocksInfo.push_back({ new Block(i % 3 + 1), {10 + (20 + rect.width) * j, 10 + (20 + rect.height) * i}});
 			blocksInfo.back().first->SetPos(blocksInfo.back().second);
 			objList.push_back(blocksInfo.back().first);
 		}

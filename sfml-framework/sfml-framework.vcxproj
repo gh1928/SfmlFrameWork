@@ -157,6 +157,7 @@
     <ClCompile Include="Framework\InputMgr.cpp" />
     <ClCompile Include="Framework\ResourceMgr.cpp" />
     <ClCompile Include="Framework\Utils.cpp" />
+    <ClCompile Include="GameObject\Pong\Item.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="GameObject\Object.cpp" />
     <ClCompile Include="Scenes\PongTitle.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Framework\ResourceMgr.h" />
     <ClInclude Include="Framework\Utils.h" />
     <ClInclude Include="GameObject\Object.h" />
+    <ClInclude Include="GameObject\Pong\Item.h" />
     <ClInclude Include="Scenes\PongTitle.h" />
     <ClInclude Include="Scenes\PongGame.h" />
     <ClInclude Include="Scenes\Scene.h" />

@@ -6,6 +6,17 @@ Block::Block(int hp)
 	shape = block;	
 	block->setSize({ GAME_WIDTH / 5.f - 20, GAME_HEIGHT / 10.f - 20 });
 	block->setPosition(position);
+	Init();
+}
+
+Block::~Block()
+{
+}
+
+void Block::Init()
+{
+	hp = maxHp;
+	enabled = true;
 	switch (hp)
 	{
 	case 1:
@@ -17,18 +28,7 @@ Block::Block(int hp)
 	case 3:
 		block->setFillColor(Color::Magenta);
 		break;
-	}	
-	enabled = true;	
-}
-
-Block::~Block()
-{
-}
-
-void Block::Init()
-{
-	hp = maxHp;
-	enabled = true;
+	}
 }
 
 void Block::Update(float dt)
